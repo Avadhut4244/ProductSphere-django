@@ -1,0 +1,8 @@
+# Force GitHub Linguist to treat HTML, CSS, and JS as part of Python (Django)
+*.html linguist-language=Python
+*.css linguist-language=Python
+*.js linguist-language=Python
+
+# Optionally exclude static and templates directories from stats
+static/* linguist-vendored
+templates/* linguist-vendored
