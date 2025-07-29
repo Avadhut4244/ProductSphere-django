@@ -39,7 +39,7 @@ MIDDLEWARE = [
     'django.middleware.clickjacking.XFrameOptionsMiddleware',
 ]
 
-ROOT_URLCONF = 'flipkart.urls'
+ROOT_URLCONF = 'ProductSphere.urls'
 
 TEMPLATES = [
     {
@@ -57,7 +57,7 @@ TEMPLATES = [
     },
 ]
 
-WSGI_APPLICATION = 'flipkart.wsgi.application'
+WSGI_APPLICATION = 'ProductSphere.wsgi.application'
 
 
 # Database
