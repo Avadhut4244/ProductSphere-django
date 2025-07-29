@@ -1,0 +1,176 @@
+{% load static %}
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <title>Add Product</title>
+    <link href="https://cdn.jsdelivr.net/npm/bootstrap@5.3.2/dist/css/bootstrap.min.css" rel="stylesheet">
+    <link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/font-awesome/6.4.0/css/all.min.css">
+    <style>
+        body {
+            background: linear-gradient(to right, #6a11cb, #7ba5ee);
+            font-family: 'Segoe UI', sans-serif;
+        }
+
+        .form-wrapper {
+            max-width: 700px;
+            margin: 50px auto;
+            background: rgba(216, 250, 202, 0.95);
+            backdrop-filter: blur(10px);
+            border-radius: 20px;
+            box-shadow: 0 8px 25px rgba(0, 0, 0, 0.15);
+            padding: 40px;
+            animation: slideUp 0.6s ease;
+        }
+
+        h2 {
+            text-align: center;
+            font-weight: 700;
+            margin-bottom: 30px;
+            color: #333;
+        }
+
+        label {
+            font-weight: 600;
+            color: #333;
+            margin-bottom: 8px;
+        }
+
+        .form-group {
+            margin-bottom: 25px;
+        }
+
+        .input-icon {
+            position: relative;
+        }
+
+        .input-icon .icon {
+            position: absolute;
+            left: 15px;
+            top: 50%;
+            transform: translateY(-50%);
+            color: #6c757d;
+            font-size: 1rem;
+        }
+
+        .input-icon input,
+        .input-icon textarea {
+            width: 100%;
+            padding: 12px 15px 12px 40px;
+            border-radius: 12px;
+            border: 1px solid #ccc;
+            transition: all 0.3s ease-in-out;
+            font-size: 1rem;
+        }
+
+        .input-icon input:focus,
+        .input-icon textarea:focus {
+            border-color: #6a1b9a;
+            box-shadow: 0 0 10px rgba(106, 27, 154, 0.2);
+            outline: none;
+        }
+
+        .btn-primary {
+            background: linear-gradient(135deg, #4CAF50, #2E7D32);
+            border: none;
+            padding: 12px 25px;
+            border-radius: 50px;
+            font-weight: 600;
+            box-shadow: 0 5px 10px rgba(76, 175, 80, 0.3);
+            transition: 0.3s ease;
+        }
+
+        .btn-primary:hover {
+            transform: scale(1.05);
+            box-shadow: 0 8px 20px rgba(76, 175, 80, 0.4);
+        }
+
+        .btn-secondary {
+            padding: 12px 25px;
+            border-radius: 50px;
+            font-weight: 600;
+            transition: 0.3s ease;
+        }
+
+        .btn-secondary:hover {
+            transform: scale(1.05);
+        }
+
+        @keyframes slideUp {
+            from {
+                transform: translateY(50px);
+                opacity: 0;
+            }
+            to {
+                transform: translateY(0);
+                opacity: 1;
+            }
+        }
+
+        @media (max-width: 576px) {
+            .btn {
+                width: 100%;
+                margin-top: 10px;
+            }
+        }
+    </style>
+</head>
+<body>
+
+<div class="container">
+    <div class="form-wrapper">
+        <h2>Add New Product</h2>
+        <form method="POST" enctype="multipart/form-data">
+            {% csrf_token %}
+
+            <!-- Product Name -->
+            <div class="form-group position-relative">
+                <label for="id_name">Product Name</label>
+                <div class="input-icon">
+                    <i class="fas fa-tag icon"></i>
+                    {{ form.name }}
+                </div>
+            </div>
+
+            <!-- Description -->
+            <div class="form-group position-relative">
+                <label for="id_description">Description</label>
+                <div class="input-icon">
+                    <i class="fas fa-align-left icon"></i>
+                    {{ form.description }}
+                </div>
+            </div>
+
+            <!-- Price -->
+            <div class="form-group position-relative">
+                <label for="id_price">Price (₹)</label>
+                <div class="input-icon">
+                    <i class="fas fa-rupee-sign icon"></i>
+                    {{ form.price }}
+                </div>
+            </div>
+
+            <!-- Image -->
+            <div class="form-group position-relative">
+                <label for="id_image">Product Image</label>
+                <div class="input-icon">
+                    <i class="fas fa-image icon"></i>
+                    {{ form.image }}
+                </div>
+            </div>
+
+            <div class="d-flex flex-wrap gap-2 mt-3">
+                <button type="submit" class="btn btn-primary">
+                    <i class="fas fa-plus-circle me-1"></i> Add Product
+                </button>
+                <a href="{% url 'electronics:home' %}" class="btn btn-secondary">
+                    <i class="fas fa-arrow-left me-1"></i> Back to Home
+                </a>
+            </div>
+        </form>
+    </div>
+</div>
+
+<script src="https://cdn.jsdelivr.net/npm/bootstrap@5.3.2/dist/js/bootstrap.bundle.min.js"></script>
+</body>
+</html>

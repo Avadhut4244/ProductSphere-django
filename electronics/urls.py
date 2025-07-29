@@ -1,7 +1,12 @@
 from django.urls import path
-from electronics import views
+from . import views
 
+app_name = 'electronics'
 
 urlpatterns = [
-    path('product/', views.product_detail, name="product_detail")
+    path('', views.home, name='home'),
+    path('add/', views.add_product, name='add_product'),
+    path('update_data/<int:id>/', views.update_data, name='update_data'),
+    path('delete_data/<int:id>/', views.delete_data, name='deletedata'),
+    path('signup/', views.signup_view, name='signup'),
 ]

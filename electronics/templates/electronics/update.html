@@ -1,0 +1,104 @@
+{% load static %}
+<!DOCTYPE html>
+<html lang="en">
+<head>
+  <meta charset="UTF-8">
+  <meta name="viewport" content="width=device-width, initial-scale=1.0">
+  <title>Update Product</title>
+
+  <!-- Bootstrap + Icons -->
+  <link href="https://cdn.jsdelivr.net/npm/bootstrap@5.3.3/dist/css/bootstrap.min.css" rel="stylesheet">
+  <link rel="stylesheet" href="https://cdn.jsdelivr.net/npm/bootstrap-icons@1.10.5/font/bootstrap-icons.css">
+  <link href="https://fonts.googleapis.com/css2?family=Poppins:wght@400;600&display=swap" rel="stylesheet">
+
+  <style>
+    body {
+      margin: 0;
+      font-family: 'Poppins', sans-serif;
+      background: linear-gradient(to right, #6a11cb, #7ba5ee);
+      color: #333;
+      display: flex;
+      justify-content: center;
+      align-items: center;
+      height: 100vh;
+    }
+
+    .form-container {
+      background: #fff;
+      padding: 40px 30px;
+      border-radius: 20px;
+      box-shadow: 0 8px 20px rgba(196, 14, 14, 0.1);
+      width: 100%;
+      max-width: 650px;
+      animation: slideIn 0.6s ease;
+      overflow-y: auto;
+      max-height: 90vh;
+    }
+
+    @keyframes slideIn {
+      from { opacity: 0; transform: translateY(40px); }
+      to { opacity: 1; transform: translateY(0); }
+    }
+
+    h2 {
+      font-weight: 600;
+      margin-bottom: 25px;
+      text-align: center;
+    }
+
+    form p {
+      margin-bottom: 1.2rem;
+    }
+
+    textarea, input[type="text"], input[type="file"], input[type="number"] {
+      width: 100%;
+      padding: 10px;
+      border-radius: 8px;
+      border: 1px solid #ccc;
+      font-size: 14px;
+    }
+
+    input[type="submit"] {
+      width: 100%;
+      background: linear-gradient(45deg, #2575fc, #6a11cb);
+      border: none;
+      padding: 12px;
+      border-radius: 30px;
+      color: #fff;
+      font-weight: 600;
+      transition: all 0.3s ease;
+    }
+
+    input[type="submit"]:hover {
+      transform: scale(1.05);
+      box-shadow: 0 0 10px rgba(0, 0, 0, 0.15);
+    }
+
+    .back-link {
+      display: block;
+      text-align: center;
+      margin-top: 15px;
+      color: #2575fc;
+      text-decoration: none;
+      font-weight: 500;
+    }
+
+    .back-link:hover {
+      text-decoration: underline;
+    }
+  </style>
+</head>
+<body>
+
+  <div class="form-container">
+    <h2>Update Product ✏️</h2>
+    <form method="POST" enctype="multipart/form-data">
+      {% csrf_token %}
+      {{ form.as_p }}
+      <input type="submit" value="Update Product">
+    </form>
+    <a href="{% url 'electronics:home' %}" class="back-link"><i class="bi bi-arrow-left-circle"></i> Back to Product List</a>
+  </div>
+
+</body>
+</html>

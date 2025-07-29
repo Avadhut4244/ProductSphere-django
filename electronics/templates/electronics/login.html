@@ -1,0 +1,215 @@
+{% load static %}
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>Login - ProductSphere</title>
+    <link rel="preconnect" href="https://fonts.googleapis.com">
+    <link rel="preconnect" href="https://fonts.gstatic.com" crossorigin>
+    <link href="https://fonts.googleapis.com/css2?family=Inter:wght@400;500;700;900&display=swap" rel="stylesheet">
+  <style>
+    :root {
+        --primary-glow: rgba(0, 198, 255, 0.5);
+        --secondary-glow: rgba(168, 85, 247, 0.5);
+        --error-glow: rgba(255, 71, 87, 0.5);
+        /* The left side still uses these dark theme colors */
+        --text-color: #f0f0f0;
+        --bg-dark: #0d1117;
+    }
+    * { margin: 0; padding: 0; box-sizing: border-box; }
+    body {
+        font-family: 'Inter', sans-serif;
+        background-color: var(--bg-dark);
+        color: var(--text-color);
+        overflow-x: hidden;
+    }
+    .container { display: flex; min-height: 100vh; width: 100vw; }
+
+    /* Left Side - Showcase Area (Unchanged) */
+    .info-side {
+        width: 45%;
+        background: linear-gradient(135deg, #0f0c29, #302b63, #24243e);
+        position: relative;
+        display: flex;
+        justify-content: center;
+        align-items: center;
+        text-align: center;
+        padding: 2rem;
+    }
+    #particles-js { position: absolute; width: 100%; height: 100%; top: 0; left: 0; z-index: 1; }
+    .info-content { z-index: 2; position: relative; }
+    .info-content h1 {
+        font-size: 3.5rem;
+        font-weight: 900;
+        background: -webkit-linear-gradient(45deg, #00c6ff, #a855f7);
+        -webkit-background-clip: text;
+        -webkit-text-fill-color: transparent;
+        margin-bottom: 1rem;
+    }
+    .info-content p { font-size: 1.2rem; color: rgba(255, 255, 255, 0.8); max-width: 400px; margin: 0 auto; }
+
+    /* --- UPDATED STYLES FOR RIGHT SIDE --- */
+
+    /* Right Side - Form Area */
+    .form-side {
+        width: 55%;
+        display: flex;
+        justify-content: center;
+        align-items: center;
+        padding: 3rem;
+        /* UPDATED: Changed to a light, semi-transparent background */
+        background-color: linear-gradient(to right, #6a11cb, #7ba5ee);
+        backdrop-filter: blur(10px);
+    }
+    .form-wrapper { width: 100%; max-width: 450px; }
+    .form-wrapper h2 { 
+        font-weight: 700; 
+        font-size: 2rem; 
+        text-align: center; 
+        margin-bottom: 2.5rem; 
+        /* UPDATED: Dark text color for contrast */
+        color: #d6d5e0; 
+    }
+
+    /* Input group styling */
+    .input-group {
+        position: relative;
+        margin-bottom: 1.5rem;
+    }
+    .input-group .icon {
+        position: absolute;
+        left: 15px;
+        top: 50%;
+        transform: translateY(-50%);
+        /* UPDATED: Dark icon color */
+        color: #e4a150;
+        transition: color 0.3s ease;
+    }
+    .form-input {
+        width: 100%;
+        background-color: rgba(230, 230, 230, 0.5);
+        border: 1px solid rgba(0, 0, 0, 0.1);
+        border-radius: 8px;
+        /* UPDATED: Dark text color */
+        color: #4f534e;
+        padding: 15px 15px 15px 50px;
+        font-size: 1rem;
+        transition: all 0.3s ease;
+    }
+    .form-input::placeholder { color: #5f5252; }
+    .form-input:focus {
+        outline: none;
+        border-color: #764ba2;
+        box-shadow: 0 0 15px var(--secondary-glow);
+    }
+    .form-input:focus ~ .icon {
+        color: #764ba2;
+    }
+
+    /* Error styling (No change needed) */
+    .form-errors {
+        background-color: rgba(255, 71, 87, 0.1);
+        border: 1px solid rgba(255, 71, 87, 0.5);
+        border-radius: 8px;
+        padding: 1rem;
+        margin-bottom: 1.5rem;
+        text-align: center;
+    }
+    .form-errors p {
+        margin: 0;
+        color: #d32f2f;
+        font-weight: 500;
+    }
+
+    /* Button styling (No change needed) */
+    .submit-btn {
+        width: 100%;
+        padding: 15px;
+        border: none;
+        border-radius: 8px;
+        font-size: 1.1rem;
+        font-weight: 700;
+        cursor: pointer;
+        background: linear-gradient(90deg, #a855f7, #00c6ff);
+        background-size: 200% 100%;
+        color: white;
+        transition: all 0.4s ease-in-out;
+        margin-top: 1rem;
+    }
+    .submit-btn:hover { background-position: 100% 0; box-shadow: 0 0 20px var(--secondary-glow); }
+
+    /* Link styling */
+    .signup-link { text-align: center; margin-top: 1.5rem; }
+    .signup-link a { 
+        /* UPDATED: Dark link color */
+        color: #667eea; 
+        text-decoration: none; 
+        font-weight: 500; 
+        transition: color 0.3s ease; 
+    }
+    .signup-link a:hover { text-decoration: underline; color: #302b63; }
+
+    /* Responsive styling (Unchanged) */
+    @media (max-width: 992px) {
+        .container { flex-direction: column; }
+        .info-side, .form-side { width: 100%; }
+        .info-side { min-height: 300px; padding: 2rem; }
+        .form-side { padding: 2rem 1.5rem; }
+        .info-content h1 { font-size: 2.5rem; }
+    }
+</style>
+</head>
+<body>
+    <div class="container">
+        <div class="info-side">
+            <div id="particles-js"></div>
+            <div class="info-content">
+                <h1>ProductSphere</h1>
+                <p>Seamless inventory. Smarter actions.</p>
+            </div>
+        </div>
+
+        <div class="form-side">
+            <div class="form-wrapper">
+                <h2>Welcome</h2>
+                <form method="POST" novalidate>
+                    {% csrf_token %}
+
+                    {% if form.non_field_errors %}
+                        <div class="form-errors">
+                            {% for error in form.non_field_errors %}
+                                <p>Your username and password didn't match. Please try again.</p>
+                            {% endfor %}
+                        </div>
+                    {% endif %}
+
+                    <div class="input-group">
+                        <span class="icon">
+                            <svg xmlns="http://www.w3.org/2000/svg" width="20" height="20" fill="currentColor" viewBox="0 0 16 16"><path d="M8 8a3 3 0 1 0 0-6 3 3 0 0 0 0 6m2-3a2 2 0 1 1-4 0 2 2 0 0 1 4 0m4 8c0 1-1 1-1 1H3s-1 0-1-1 1-4 6-4 6 3 6 4m-1-.004c-.001-.246-.154-.986-.832-1.664C11.516 10.68 10.289 10 8 10s-3.516.68-4.168 1.332c-.678.678-.83 1.418-.832 1.664z"/></svg>
+                        </span>
+                        <input type="text" name="username" class="form-input" placeholder="Username" required>
+                    </div>
+
+                    <div class="input-group">
+                        <span class="icon">
+                            <svg xmlns="http://www.w3.org/2000/svg" width="20" height="20" fill="currentColor" viewBox="0 0 16 16"><path d="M8 1a2 2 0 0 1 2 2v4H6V3a2 2 0 0 1 2-2m3 6V3a3 3 0 0 0-6 0v4a2 2 0 0 0-2 2v5a2 2 0 0 0 2 2h6a2 2 0 0 0 2-2V9a2 2 0 0 0-2-2"/></svg>
+                        </span>
+                        <input type="password" name="password" class="form-input" placeholder="Password" required>
+                    </div>
+
+                    <button type="submit" class="submit-btn">Log In</button>
+                </form>
+                <div class="signup-link">
+                    <p>Don't have an account? <a href="{% url 'signup' %}">Sign Up</a></p>
+                </div>
+            </div>
+        </div>
+    </div>
+
+    <script src="https://cdn.jsdelivr.net/npm/particles.js@2.0.0/particles.min.js"></script>
+    <script>
+        particlesJS("particles-js", { "particles": { "number": { "value": 80, "density": { "enable": true, "value_area": 800 } }, "color": { "value": "#ffffff" }, "shape": { "type": "circle", }, "opacity": { "value": 0.5, "random": false, }, "size": { "value": 3, "random": true, }, "line_linked": { "enable": true, "distance": 150, "color": "#ffffff", "opacity": 0.4, "width": 1 }, "move": { "enable": true, "speed": 2, "direction": "none", "random": false, "straight": false, "out_mode": "out", "bounce": false, } }, "interactivity": { "detect_on": "canvas", "events": { "onhover": { "enable": true, "mode": "repulse" }, "onclick": { "enable": true, "mode": "push" }, "resize": true }, "modes": { "repulse": { "distance": 100, "duration": 0.4 }, "push": { "particles_nb": 4 }, } }, "retina_detect": true });
+    </script>
+</body>
+</html>
